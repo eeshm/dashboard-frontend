@@ -1,36 +1,79 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+```markdown
+# Sales Dashboard - Next.js 14 + Material-UI
+
+A modern, responsive sales dashboard built with Next.js 14, TypeScript, Material-UI, and Zustand for state management.
+
+## Features
+
+- 📊 **Interactive Charts** - Built with Recharts for responsive data visualization
+- 🎨 **Material-UI Components** - Consistent design system with custom theming
+- 📱 **Fully Responsive** - Mobile-first design with collapsible sidebar
+- ⚡ **Performance Optimized** - Next.js 14 with App Router
+- 🔄 **State Management** - Zustand for efficient global state
+- 🎯 **TypeScript** - Full type safety throughout the application
+- 📋 **Real-time Data** - Ready for API integration
+
+## Tech Stack
+
+- **Framework**: Next.js 14 (App Router)
+- **Language**: TypeScript
+- **UI Library**: Material-UI (MUI) v5+
+- **State Management**: Zustand
+- **Charts**: Recharts
+- **HTTP Client**: Axios
+- **Styling**: MUI Theme + CSS-in-JS
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
+
+- Node.js 18+ 
+- npm or yarn
+
+### Installation
+
+1. Clone the repository or create a new Next.js project:
+
+```bash
+npx create-next-app@latest sales-dashboard --typescript --app
+cd sales-dashboard
+```
+
+2. Install dependencies:
+
+```bash
+npm install @mui/material @mui/icons-material @emotion/react @emotion/styled
+npm install zustand axios recharts @mui/x-charts @fontsource/inter
+```
+
+3. Copy the provided code files to your project structure
+
+4. Run the development server:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+5. Open [http://localhost:3000](http://localhost:3000) in your browser
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Project Structure
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```
+src/
+├── app/
+│   ├── layout.tsx          # Root layout with theme provider
+│   └── page.tsx            # Main dashboard page
+├── components/
+│   ├── Layout/
+│   │   ├── Sidebar.tsx     # Navigation sidebar
+│   │   └── Header.tsx      # Top navigation header
+│   └── Dashboard/
+│       ├── KPICard.tsx     # Key performance indicator cards
+│       ├── TopProducts.tsx # Products table
+│       ├── SalesMapping.tsx # Geographic sales visualization
+│       └── Charts/         # Chart components
+├── store/
+│   └── dashboardStore.ts   # Zustand store for state management
+└── theme/
+    └── theme.ts            # Material-UI theme configuration
+```

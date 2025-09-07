@@ -1,103 +1,181 @@
-import Image from "next/image";
+'use client';
+import React, { useEffect } from 'react';
+import {
+  Box,
+  Grid,
+  Button,
+  Typography,
+  CircularProgress,
+  Alert,
+  useTheme,
+  useMediaQuery,
+  Drawer,
+  AppBar,
+  Toolbar,
+  Card
+} from '@mui/material';
+import { FileDownload } from '@mui/icons-material';
+import { useDashboardStore } from '@/store/dashboardStore';
 
-export default function Home() {
+// Components
+import Sidebar from '@/components/Layout/Sidebar';
+import Header from '@/components/Layout/Header';
+import KPICard from '@/components/Dashboard/KpiCards';
+import VisitorInsights from '@/components/Dashboard/Charts/VisitorsInsights';
+import TotalRevenue from '@/components/Dashboard/Charts/TotalRevenue';
+import CustomerSatisfaction from '@/components/Dashboard/Charts/CustomerSatisfaction';
+import TargetVsReality from '@/components/Dashboard/Charts/TargetVsReality';
+import VolumeVsService from '@/components/Dashboard/Charts/VolumeVsService';
+import TopProducts from '@/components/Dashboard/TopProducts';
+import SalesMapping from '@/components/Dashboard/SalesMapping';
+
+const drawerWidth = 280;
+
+export default function Dashboard() {
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down('md'));
+
+  const {
+    kpiData,
+    visitorInsights,
+    totalRevenue,
+    customerSatisfaction,
+    targetVsReality,
+    volumeVsService,
+    topProducts,
+    isLoading,
+    error,
+    sidebarOpen,
+    fetchDashboardData,
+  } = useDashboardStore();
+
+  useEffect(() => {
+    fetchDashboardData();
+  }, [fetchDashboardData]);
+
+  if (isLoading) {
+    return (
+      <Box
+        sx={{
+          display: 'flex',
+          height: '100vh',
+        }}
+      >
+        <CircularProgress />
+      </Box>
+    );
+  }
+
   return (
-    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="font-mono list-inside list-decimal text-sm/6 text-center sm:text-left">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] font-mono font-semibold px-1 py-0.5 rounded">
-              app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+    <Box sx={{ display: 'flex', minHeight: '100vh' }}>
+      {/* Sidebar */}
+      <Sidebar />
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
-        </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
+      {/* Main Content */}
+      <Box
+        component="main"
+        sx={{
+          flexGrow: 1,
+          marginLeft: { xs: 0, md: `${drawerWidth}px` },
+           width: { xs: '100%', md: `calc(100% - ${drawerWidth}px)` },
+          bgcolor: 'background.default',
+        }}
+      >
+        <Header />
+
+        <Box sx={{ p: 3 }}>
+          {error && (
+            <Alert severity="error" sx={{ mb: 3 }}>
+              {error}
+            </Alert>
+          )}
+          <Grid container spacing={3}>
+
+            {/* Top Row - Today's Sales and KPI Cards */}
+             <Card>
+            <Grid size={{md:12, xs:12 }}>
+                <Box
+                  sx={{
+                    display: 'flex',
+                    justifyContent: 'space-between',
+                    alignItems: 'center',
+                    mb: 3,
+                  }}
+                >
+                  <Box>
+                    <Typography variant="h5" sx={{ fontWeight: 600, mb: 1 }}>
+                      Today's Sales
+                    </Typography>
+                    <Typography variant="body2" color="text.secondary">
+                      Sales Summary
+                    </Typography>
+                  </Box>
+
+                  <Button
+                    variant="outlined"
+                    startIcon={<FileDownload />}
+                    sx={{
+                      borderColor: 'primary.main',
+                      color: 'primary.main',
+                      fontWeight: 500,
+                    }}
+                  >
+                    Export
+                  </Button>
+                </Box>
+
+                <Grid container spacing={3}>
+                  {kpiData.map((kpi) => (
+                    <Grid size={{xs:12,sm:3}} key={kpi.id}>
+                      <KPICard data={kpi} />
+                    </Grid>
+                  ))}
+                </Grid>
+            </Grid>
+            </Card>
+
+            {/* Charts Section */}
+
+
+            {/* Visitor Insights */}
+            <Grid size={{md:4, xs:12,sm:6 }}>
+              <VisitorInsights data={visitorInsights} />
+            </Grid>
+
+
+            {/* Total Revenue */}
+            <Grid size={{md:6, xs:12 ,sm:6}} >
+              <TotalRevenue data={totalRevenue} />
+            </Grid>
+
+            {/* Customer Satisfaction */}
+            <Grid size={{md:3, xs:12,sm:6 }}>
+              <CustomerSatisfaction data={customerSatisfaction} />
+            </Grid>
+            {/* Target vs Reality */}
+            <Grid size={{md:3, xs:12 ,sm:6}}>
+              <TargetVsReality data={targetVsReality} />
+            </Grid>
+
+
+
+
+
+            {/* Bottom Row */}
+            <Grid size={{md:6, xs:12 ,sm:6}}>
+              <TopProducts data={topProducts} />
+            </Grid>
+
+            <Grid size={{md:3, xs:12 ,sm:6}}>
+              <SalesMapping />
+            </Grid>
+
+            <Grid size={{md:3, xs:12,sm:6 }}>
+              <VolumeVsService data={volumeVsService} />
+            </Grid>
+          </Grid>
+        </Box>
+      </Box>
+    </Box>
   );
 }
