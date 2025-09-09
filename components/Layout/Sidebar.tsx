@@ -28,6 +28,7 @@ import {
 } from '@mui/icons-material';
 import Image from 'next/image';
 import { useDashboardStore } from '@/store/dashboardStore';
+import Background from '../../Background.webp'
 
 const drawerWidth = 280;
 
@@ -104,7 +105,7 @@ export default function Sidebar({ window }: SidebarProps) {
       <Box sx={{ p: 2 }}>
         <Card
           sx={{
-            bgcolor: 'primary.main',
+            background:`url(${Background.src}) no-repeat center/cover`,
             color: 'white',
             p: 3,
             textAlign: 'center',

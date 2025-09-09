@@ -26,6 +26,7 @@ export default function TargetVsReality({ data }: TargetVsRealityProps) {
         
 
       </Box>
+            <Box sx={{ml:-3}}>
       
       <ResponsiveContainer width="100%" height={250}>
         <BarChart data={data} barCategoryGap="20%">
@@ -56,6 +57,7 @@ export default function TargetVsReality({ data }: TargetVsRealityProps) {
           />
         </BarChart>
       </ResponsiveContainer>
+      </Box>
         <Box sx={{ display: 'flex' ,gap: 3 }}>
           <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
             <Box sx={{ width: 12, height: 12, borderRadius: '50%', bgcolor: '#10B981' }} />

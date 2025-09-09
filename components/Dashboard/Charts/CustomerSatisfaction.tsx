@@ -45,7 +45,7 @@ export default function CustomerSatisfaction({ data }: CustomerSatisfactionProps
         </Box>
       </Box>
       
-      <Box sx={{ width: '100%'}}>
+      <Box sx={{ width: '100%', ml:-5,mr:0,mt:0,mb:0,}}>
       <ResponsiveContainer width="100%" height={200}>
         <AreaChart data={data}>
           <CartesianGrid strokeDasharray="3 3" stroke="#f0f0f0" />

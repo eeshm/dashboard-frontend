@@ -92,53 +92,63 @@ export default function Dashboard() {
           <Grid container spacing={3}>
 
             {/* Top Row - Today's Sales and KPI Cards */}
-             <Card>
-            <Grid size={{md:12, xs:12 }}>
-                <Box
-                  sx={{
-                    display: 'flex',
-                    justifyContent: 'space-between',
-                    alignItems: 'center',
-                    mb: 3,
-                  }}
-                >
-                  <Box>
-                    <Typography variant="h5" sx={{ fontWeight: 600, mb: 1 }}>
-                      Today's Sales
-                    </Typography>
-                    <Typography variant="body2" color="text.secondary">
-                      Sales Summary
-                    </Typography>
-                  </Box>
+  <Grid size={{xs:12,md:8,sm:12}}>
+  {/* 1. Make the Card a flex container with a vertical direction */}
+  <Card sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
+    
+    {/* This inner Grid isn't strictly necessary but is kept for structure */}
+    <Grid size={{xs:12}} sx={{ p: 3 }}> {/* Added padding here */}
+      <Box
+        sx={{
+          display: 'flex',
+          justifyContent: 'space-between',
+          alignItems: 'center',
+          mb: 3,
+        }}
+      >
+        <Box>
+          <Typography variant="h5" sx={{ fontWeight: 600, mb: 1 }}>
+            Today's Sales
+          </Typography>
+          <Typography variant="body2" color="text.secondary">
+            Sales Summary
+          </Typography>
+        </Box>
 
-                  <Button
-                    variant="outlined"
-                    startIcon={<FileDownload />}
-                    sx={{
-                      borderColor: 'primary.main',
-                      color: 'primary.main',
-                      fontWeight: 500,
-                    }}
-                  >
-                    Export
-                  </Button>
-                </Box>
+        <Button
+          variant="outlined"
+          startIcon={<FileDownload />}
+          sx={{
+            borderColor: 'primary.main',
+            color: 'primary.main',
+            fontWeight: 500,
+          }}
+        >
+          Export
+        </Button>
+      </Box>
+    </Grid>
 
-                <Grid container spacing={3}>
-                  {kpiData.map((kpi) => (
-                    <Grid size={{xs:12,sm:3}} key={kpi.id}>
-                      <KPICard data={kpi} />
-                    </Grid>
-                  ))}
-                </Grid>
-            </Grid>
-            </Card>
+    {/* 2. Make this Box grow to fill the remaining space */}
+    <Box sx={{ flexGrow: 1, px: 3, pb: 3 }}> {/* Added padding here */}
+      <Grid container spacing={3} sx={{ height: '100%' }}>
+        {kpiData.map((kpi) => (
+          <Grid size={{xs:12,sm:3}} key={kpi.id}>
+            {/* The KPICard component itself must also have height: 100% */}
+            <KPICard data={kpi} />
+          </Grid>
+        ))}
+      </Grid>
+    </Box>
+    
+  </Card>
+</Grid>
 
             {/* Charts Section */}
 
 
             {/* Visitor Insights */}
-            <Grid size={{md:4, xs:12,sm:6 }}>
+            <Grid size={{md:4, xs:12,sm:12 }}>
               <VisitorInsights data={visitorInsights} />
             </Grid>
 

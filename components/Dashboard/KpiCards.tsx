@@ -8,10 +8,10 @@ interface KPICardProps {
 }
 
 const colorMap = {
-  pink: { bg: '#FFE2E5', main: '#EC4899' },
-  orange: { bg: '#FFF4DE', main: '#F59E0B' },
-  green: { bg: '#DCFCE7', main: '#10B981' },
-  purple: { bg: '#F3E8FF', main: '#8B5CF6' },
+  pink: { bg: '#FFE2E5', main: '#FA5A7D' },
+  orange: { bg: '#FFF4DE', main: '#FF947A' },
+  green: { bg: '#DCFCE7', main: '#3CD856' },
+  purple: { bg: '#F3E8FF', main: '#BF83FF' },
 };
 
 export default function KPICard({ data }: KPICardProps) {

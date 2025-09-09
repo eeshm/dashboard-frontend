@@ -26,6 +26,7 @@ export default function VisitorInsights({ data }: VisitorInsightsProps) {
         </Typography>
       </Box>
       
+      <Box sx={{ mb: 0 ,ml:-5, mr:0  }}>  
       <ResponsiveContainer width="100%" height={300}>
         <LineChart data={data}>
           <CartesianGrid strokeDasharray="3 3" stroke="#f0f0f0" />
@@ -45,9 +46,9 @@ export default function VisitorInsights({ data }: VisitorInsightsProps) {
           <Line
             type="monotone"
             dataKey="loyalCustomers"
-            stroke="#8B5CF6"
+            stroke="#A700FF"
             strokeWidth={3}
-            dot={{ fill: '#8B5CF6', strokeWidth: 2, r: 4 }}
+            dot={false}
             name="Loyal Customers"
           />
           <Line
@@ -55,19 +56,20 @@ export default function VisitorInsights({ data }: VisitorInsightsProps) {
             dataKey="newCustomers"
             stroke="#EF4444"
             strokeWidth={3}
-            dot={{ fill: '#EF4444', strokeWidth: 2, r: 4 }}
+            dot={false}
             name="New Customers"
-          />
+            />
           <Line
             type="monotone"
             dataKey="uniqueCustomers"
-            stroke="#10B981"
+            stroke="#3CD856"
             strokeWidth={3}
-            dot={{ fill: '#10B981', strokeWidth: 2, r: 4 }}
+            dot={false}
             name="Unique Customers"
           />
         </LineChart>
       </ResponsiveContainer>
+      </Box>
     </Card>
   );
 }

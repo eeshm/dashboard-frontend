@@ -45,6 +45,8 @@ export default function VolumeVsService({ data }: VolumeVsServiceProps) {
           </Box>
         </Box>
       </Box>
+            <Box sx={{ml:-3}}>
+      
       
       <ResponsiveContainer width="100%" height={250}>
         <BarChart data={data} barCategoryGap="20%">
@@ -75,6 +77,7 @@ export default function VolumeVsService({ data }: VolumeVsServiceProps) {
           />
         </BarChart>
       </ResponsiveContainer>
+      </Box>
     </Card>
   );
 }
