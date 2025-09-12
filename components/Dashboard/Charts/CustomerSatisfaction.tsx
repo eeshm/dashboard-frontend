@@ -77,7 +77,7 @@ export default function CustomerSatisfaction({ data }: CustomerSatisfactionProps
             fill="#D1FAE5"
             strokeWidth={2}
           />
-        </AreaChart>
+        </AreaChart>   
       </ResponsiveContainer>
       </Box>
     </Card>
