@@ -156,26 +156,26 @@ kpiData: [
   setError: (error) => set({ error }),
   setSidebarOpen: (close) => set({ sidebarOpen: close }),
   
-  // Mock API call - replace with real API integration
+
   fetchDashboardData: async () => {
     try {
-      set({ isLoading: true, error: null });
+      set({ isLoading: false, error: null });
 
-      const[metricsRes,revenueRes,satisfactionRes,visitorRes,productsRes] = await Promise.all([
-       axios.get(`${API_BASE_URL}/api/dashboard/metrics`),
-        axios.get(`${API_BASE_URL}/api/dashboard/revenue`),
-        axios.get(`${API_BASE_URL}/api/dashboard/customer-satisfaction`),
-        axios.get(`${API_BASE_URL}/api/dashboard/visitor-insights`),
-        axios.get(`${API_BASE_URL}/api/dashboard/top-products`),
-      ]);
-        set({
-        kpiData: metricsRes?.data?.data?.data.metrics || [],
-        totalRevenue: revenueRes.data.data.data.revenue || [],
-        customerSatisfaction: satisfactionRes.data.data.data.data || [],
-        visitorInsights: visitorRes.data.data.data.data || [],
-        topProducts: productsRes.data.data.data.products || [],
-        isLoading: false,
-      });
+      // const[metricsRes,revenueRes,satisfactionRes,visitorRes,productsRes] = await Promise.all([
+      //  axios.get(`${API_BASE_URL}/api/dashboard/metrics`),
+      //   axios.get(`${API_BASE_URL}/api/dashboard/revenue`),
+      //   axios.get(`${API_BASE_URL}/api/dashboard/customer-satisfaction`),
+      //   axios.get(`${API_BASE_URL}/api/dashboard/visitor-insights`),
+      //   axios.get(`${API_BASE_URL}/api/dashboard/top-products`),
+      // // ]);
+      //   set({
+      //   kpiData: metricsRes?.data?.data?.data.metrics || [],
+      //   totalRevenue: revenueRes.data.data.data.revenue || [],
+      //   customerSatisfaction: satisfactionRes.data.data.data.data || [],
+      //   visitorInsights: visitorRes.data.data.data.data || [],
+      //   topProducts: productsRes.data.data.data.products || [],
+      //   isLoading: false,
+      // });
       // Simulate API delay
       // await new Promise(resolve => setTimeout(resolve, 1000));      
     } catch (error) {

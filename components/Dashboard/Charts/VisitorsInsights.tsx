@@ -42,7 +42,6 @@ export default function VisitorInsights({ data }: VisitorInsightsProps) {
             tick={{ fontSize: 12, fill: '#6B7280' }}
           />
           <Tooltip />
-          <Legend />
           <Line
             type="monotone"
             dataKey="loyalCustomers"
@@ -67,6 +66,7 @@ export default function VisitorInsights({ data }: VisitorInsightsProps) {
             dot={false}
             name="Unique Customers"
           />
+            <Legend />
         </LineChart>
       </ResponsiveContainer>
       </Box>

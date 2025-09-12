@@ -4,7 +4,7 @@ import {
   BarChart,
   Bar,
   XAxis,
-  YAxis,
+  YAxis, 
   CartesianGrid,
   Tooltip,
   ResponsiveContainer,
@@ -42,7 +42,7 @@ export default function TargetVsReality({ data }: TargetVsRealityProps) {
             tickLine={false}
             tick={{ fontSize: 12, fill: '#6B7280' }}
           />
-          <Tooltip />
+          {/* <Tooltip /> */}
           <Bar
             dataKey="reality"
             fill="#10B981"

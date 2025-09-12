@@ -90,13 +90,10 @@ export default function Dashboard() {
             </Alert>
           )}
           <Grid container spacing={3}>
-
-            {/* Top Row - Today's Sales and KPI Cards */}
+            
   <Grid size={{xs:12,md:8,sm:12}}>
-  {/* 1. Make the Card a flex container with a vertical direction */}
   <Card sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
     
-    {/* This inner Grid isn't strictly necessary but is kept for structure */}
     <Grid size={{xs:12}} sx={{ p: 3 }}> {/* Added padding here */}
       <Box
         sx={{
